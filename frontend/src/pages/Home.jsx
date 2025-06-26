@@ -4,7 +4,7 @@ import PropertyDetails from "./PropertyDetails"
 
 const Home = () => {
   return (
-    <div><PropertyDetails/></div>
+    <div className=''><PropertyDetails/></div>
   )
 }
 export default Home

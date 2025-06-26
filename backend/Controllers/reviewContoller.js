@@ -30,7 +30,6 @@ export const createReview = async (req, res) => {
     console.log(req);
     const { rating, comment } = req.body;
     const review = new Review({
-    
       propertyId: req.params.propertyId,
       rating,
       comment,
@@ -46,14 +45,14 @@ export const createReview = async (req, res) => {
 export const updateReview = async (req, res) => {
   try {
     const review = await Review.findById(req.params.reviewId);
-    if (!review || review.userId.toString() !== req.user.userId) {
-      return res.status(403).json({ error: "Not authorized" });
+    if (!review) {
+      return res.status(403).json({ error: "No Review" });
     }
 
     const updateReview = await Review.findByIdAndUpdate(
       req.params.reviewId,
       { $set: req.body },
-      { new: true } // Return the updated review
+      { new: true }
     );
 
     res.json(updateReview);
@@ -66,8 +65,8 @@ export const updateReview = async (req, res) => {
 export const deleteReview = async (req, res) => {
   try {
     const review = await Review.findById(req.params.reviewId);
-    if (!review || review.userId.toString() !== req.user.userId) {
-      return res.status(403).json({ error: "Not authorized" });
+    if (!review) {
+      return res.status(403).json({ error: "No Review" });
     }
     await Review.findByIdAndDelete(req.params.reviewId);
     res.json({ message: "Review deleted" });

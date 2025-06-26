@@ -22,9 +22,15 @@ const ReviewForm = ({ onSubmit, initialRating = 0, initialComment = "" }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="mb-4">
-      <label className="block font-medium mb-1">Your Rating:</label>
-      <StarRating rating={rating} onRatingChange={setRating} editable={true} />
+    <form onSubmit={handleSubmit} className="mb-4 flex flex-col justify-around items-start gap-4">
+      <div className="flex items-center space-x-2">
+        <label className="block font-medium mb-1">Give your Rating:</label>
+        <StarRating
+          rating={rating}
+          onRatingChange={setRating}
+          editable={true}
+        />
+      </div>
 
       <label className="block mt-4 font-medium mb-1">Your Comment:</label>
       <textarea
@@ -37,7 +43,7 @@ const ReviewForm = ({ onSubmit, initialRating = 0, initialComment = "" }) => {
 
       <button
         type="submit"
-        className="mt-3 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+        className="mt-3 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 "
       >
         {initialComment ? "Update Review" : "Submit Review"}
       </button>
